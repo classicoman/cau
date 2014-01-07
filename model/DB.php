@@ -14,8 +14,6 @@ class DB {
     var $database_name  = "ngckybrh_inventory";
     var $username       = "ngckybrh_invento";
     var $password       = "qwert098yhn";
-
-  
     
     private $dbh;  //DataBase Object
     private $isDBConnected;  // 1 if the Database is connected
@@ -73,5 +71,4 @@ class DB {
         }
         return $rows;
     }
-    
 }

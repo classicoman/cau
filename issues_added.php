@@ -21,9 +21,8 @@ else
     $sql = "SELECT iss.name,iss.descripcio,iss.fkey_prioritat,iss.date_start,iss.bool_checked, ".
             "iss.fkey_location, lo.name AS location_name ".
             "FROM issues AS iss LEFT JOIN locations AS lo ON lo.id=iss.fkey_location WHERE iss.id='$id'";
-    $result = $tables->executaQuery($sql);
     //Get the Row
-    $row = $tables->getFirstRow($result);
+    $row = $tables->getFirstRow($sql);
     
     //Set the issue as Checked.
     if ($username=="admin")

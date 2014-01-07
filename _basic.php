@@ -28,8 +28,7 @@ function getFieldsFilter($tb)
 {
 //Get the filtered fields inside $chbvalues.
     $tables = new Tables();
-    $result = $tables->executaQuery("SELECT fields FROM _tables_fields WHERE table_name='$tb'");
-    $row = $tables->getFirstRow($result);
+    $row = $tables->getFirstRow("SELECT fields FROM _tables_fields WHERE table_name='$tb'");
     if ($row['fields']==NULL)
         $chbvalues = "1111111111111111111111111";
     else
