@@ -1,6 +1,5 @@
 <?php
-//Start the Sesion
-session_start(); 
+session_start();
 if (isset($_SESSION['myusername']))
     $session = true;
 else
