@@ -23,7 +23,7 @@ else
             "FROM issues AS iss LEFT JOIN locations AS lo ON lo.id=iss.fkey_location WHERE iss.id='$id'";
     $result = $tables->executaQuery($sql);
     //Get the Row
-    $row = getFirstRegister($result);
+    $row = $tables->getFirstRow($result);
     
     //Set the issue as Checked.
     if ($username=="admin")

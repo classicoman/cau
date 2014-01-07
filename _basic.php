@@ -1,22 +1,4 @@
 <?php
-
-/* Given a result from a PDO Query, $result, I retrieve the first row of the Query. */
-function getFirstRegister($result)
-{
-    $i = 0;
-    foreach ($result as $query2) {
-       $queryReturn[$i] = $query2;
-       $i++;
-    }
-    //If there's more than a row, should prompt a WARNING (id must be unique!)
-    if($i == 0) {
-       return 0;
-    }
-    return $query2;
-}
-
-
-
 /* Is the result of the Query Null? */
 function dbIsQueryResultNull($result) {
     foreach($result as $r) {
@@ -47,7 +29,7 @@ function getFieldsFilter($tb)
 //Get the filtered fields inside $chbvalues.
     $tables = new Tables();
     $result = $tables->executaQuery("SELECT fields FROM _tables_fields WHERE table_name='$tb'");
-    $row = getFirstRegister($result);
+    $row = $tables->getFirstRow($result);
     if ($row['fields']==NULL)
         $chbvalues = "1111111111111111111111111";
     else
@@ -106,22 +88,6 @@ function isUserAMobileDevice() {
     }
     return /*$mobile_browser*/1;  //xtoni Mode Proves.
 }
-?>
-
-
-
-
-<?php
-/*************************************************************************
-WHAT:		PDO connection to a MySQL Database. 
-WHO:		xxxtoni
-WHEN:		did this 10-09-2012
-SOURCES:  This code has been obtained from two very valuable sources:
-	- http://stackoverflow.com/questions/12329447/examples-of-small-php-and-my-sql-projects-to-learn-the-basics/12329749#12329749
-	- http://www.php.net/manual/en/pdo.query.php
-**************************************************************************/
-
-
 
 /* Print a LISTBOX of a table derived from a FK field, with a certain value */
 function printListBox($f, $tb, $v) 

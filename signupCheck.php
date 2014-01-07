@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include '_basic.php';
-include 'model/Tables.php';
+require_once '_basic.php';
+require_once 'model/Tables.php';
 $tables = new Tables();
 
 function test_input($data) {
@@ -64,11 +64,15 @@ if (!$error)
                 
                 // Fill the email fields.
                 $direccio = /*$email*/"informatic"."@escoladisseny.com"; //xxtoni
-                $subject = "Dades accés notifyIssue";
-                $message = "Usuari = ".$email.", psd = ".$_POST['password'];
-                
+                $subject = "Dades accés a cau.easdib.com";
+                $message = "<html><body><h1>Acces a <a href='http://cau.easdib.com'>http://cau.easdib.com</a></h1>"
+                        . "<ul><li>Usuari: <b>".$email."</b></li><li> Contrasenya: <b>".$_POST['password']."</b></li></ul>"
+                        . "</body></html>";
+                $headers =  "From:noreply@toniamengualsalas.com"
+                        . "MIME-Version: 1.0\r\n"
+                        ."Content-Type: text/html; charset=ISO-8859-1\r\n";
                 //Send the email
-                mail($direccio, $subject, $message, "From:noreply@toniamengualsalas.com");
+                mail($direccio, $subject, $message,$headers);
                 
                 //Set Session Username.
                 session_start();

@@ -17,11 +17,11 @@
                            placeholder="Nom" value="<?php echo $name ?>"/> 
                 </div>
                 <div class="row">
-                    <input name="surname" type="text" autofocus="autofocus"
+                    <input name="surname" type="text"
                            placeholder="Llinatges" value="<?php echo $surname ?>"/> 
                 </div>
                 <div class="row">
-                    <input id="email" name="email" type="text" autofocus="autofocus"
+                    <input id="email" name="email" type="text"
                            placeholder="E-mail" value="<?php echo $email ?>"/><span id="domainname">@escoladisseny.com</span>
                 </div>
                 <div class="row">
@@ -31,11 +31,13 @@
                     <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
                 </div>
                 <div class="row" id="captcha_code">
-                    <input type="text" name="captcha_code" size="10" maxlength="6" />
+                    Escriu el text:<input type="text" name="captcha_code" size="10" maxlength="6" />
+                </div>
+                <div class="row">
                     <a href="#" 
                        onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
                 </div>    
-                <div class="row">
+                <div class="row" id="login_button">
                     <button type="submit">Acceptar</button>
                 </div>
             </form>	

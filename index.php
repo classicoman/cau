@@ -5,7 +5,7 @@ if (isset($_SESSION['myusername']))
 else
     $session=false;
 
-require '_basic.php';
+require_once '_basic.php';
 
 // Botar a SC_SIGNUP?
 $jump=false;
