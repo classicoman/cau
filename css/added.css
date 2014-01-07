@@ -1,0 +1,91 @@
+/*SC_Addedd*/
+#header_added {
+    display: inline-block;
+    width: 100%;
+    background-color: #15bbd5;
+}
+#rotul {
+    width: auto;
+    padding-top: 10px;
+    float: left;
+    font-size: 1.4em;
+    height: 35px;
+    padding-left: 3px;
+}
+#btnBack {
+    height: 45px;
+    width: 50px;
+    float:right;
+    text-align: right;
+    background: url("../images/back.png") no-repeat;
+    background-size: 50px 50px;
+    
+    cursor:pointer;
+}
+#btnBack:hover, #btnBack:active {
+    background: url("../images/back-b.png") no-repeat;
+    background-size: 50px 50px;
+}
+    
+    
+/*
+div#back img {
+    height:45px;
+    width: 45px;
+}*/
+
+td.label {
+    font-size: 0.8em;  
+}
+input#name {
+    width: 99%;
+    font-size:1.15em;
+}
+input#date_start {
+    font-size: 1.2em;
+    width:100px;
+}
+textarea.desc {
+    width: 100%;
+    font-size: 1.2em;
+    height: 120px;
+    width: 99%;
+}
+#location {
+    font-size: 1em;
+}
+
+div.fila {
+    padding-top: 7px;
+}
+
+#comments{
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.selectLB {
+    font-size: 1.2em;
+}
+
+#buttons {
+    width: 100%;
+    padding: 15px 0 15px 0;
+    
+    text-align: center;
+}
+#btnUpdate, #btnClose {
+    margin-bottom: 10px;
+    padding: 20px 30px 20px 30px;
+
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* Gif animat que se mostra mentre està guardant les dades a la BD */
+div#updating {
+    background:url(../images/ajax-loader.gif) no-repeat left; 
+    width:50px;
+    padding-left: 25px;
+    display:none;
+}
