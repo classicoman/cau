@@ -80,7 +80,7 @@ switch ($pg) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Ajustam el contingut a la pantalla, tal i com és desitjable en disp mòbils -->
     <meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
-    <title>issueNofifier 1.0</title>
+    <title>CAU - EASDIB 1.0</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
@@ -122,7 +122,6 @@ switch ($pg) {
 <?php       if (isset($_GET['errm'])) echo $_GET['errm']; ?>
     </div>
 
-<?php include 'templates/footer.php';   ?>
-        
+<?php include 'templates/footer.php';   ?>   
 </body>
 </html>

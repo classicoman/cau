@@ -6,7 +6,7 @@
     text-align:center;
     
     background-color: #15bbd5;
-}	
+}
 #logo {
     width: 12%;
     float:left;
@@ -16,7 +16,7 @@
     width:45px;
 }
 #title {
-    width: 45%;
+    width: 60%;
     float:left;
     height: 35px;
     padding: 10px 0 0 12px;
@@ -24,7 +24,7 @@
     font-size: 1.4em; 
 }
 #username {
-    width: 30%;
+    width: 15%;
     font-size: 0.65em;
     float:right;
     margin-top: 10px;
@@ -79,9 +79,6 @@
     cursor:pointer;
 }
 .fila:hover {
-    background-color: #E5E5E5;
-}
-.fila:active {
     background-color: #E5E5E5;
 }
 

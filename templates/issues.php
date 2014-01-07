@@ -4,7 +4,7 @@
     <div id="logo">
         <img src="images/logo.png" alt="Logo"/>
     </div>
-    <div id="title"><?php echo $dic['issues'][0]?></div>
+    <div id="title">CAU - EASDIB 1.0</div>
     <div id="username"><?php echo $username ?></div>
 </div>
 <div id="menubar">

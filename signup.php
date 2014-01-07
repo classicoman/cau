@@ -26,8 +26,8 @@ if (isset($_GET['name']))      $name = $_GET['name'];
 if (isset($_GET['surname']))   $surname = $_GET['surname'];
 if (isset($_GET['email']))     $email = $_GET['email'];
      
-/* Get the error */
+// Get and Show the error
 if (isset($_GET['error']))
-    if ($_GET['error']!=0)  /* If there was an error in the Form.. */ 
+    if ($_GET['error']!=0)  // If there was an error in the Form..
         echo getFormErrorMessage($_GET['error']);
 ?>
