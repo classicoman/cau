@@ -53,7 +53,7 @@ class Tables {
             echo "<p>Error en executar Query, DB.php: <i>".$err."</i></p><p>".$queryString."</p>"; 
         }
         
-        return $rows->fetch(PDO::FETCH_ASSOC);  //xxxtoni        
+        return $rows->fetch(PDO::FETCH_ASSOC);    
     }
     
     
@@ -77,7 +77,6 @@ class Tables {
     
     
     function getTableCols($separator) {
-        //xxxtoni Aquest mètode només pot ser cridat des d'una classe Fill, o en una instancia de taula en la que s'hagi donat valor a $tb
         $this->base->connecta();
         $sql = "SHOW COLUMNS FROM ".$this->tb."";
         $result =  $this->base->executaQuery($sql);
@@ -94,20 +93,6 @@ class Tables {
         return substr($fields,0,strlen($fields)-1);
     }
     
-    function getShowableFields() {
-        //xxxtoni Aquest mètode només pot ser cridat des d'una classe Fill, on s'hagi donat valor a $tb
-            $fields = explode(",",$this->getTableCols(","));
-            $fields_show = str_split($this->getFieldsFilter());
-            $col=0;
-            $result="";
-            foreach ($fields as $fi)
-            {
-                if ($fields_show[$col++]) //He de mostrar aquest camp?
-                    $result .=  $fi.",";
-            }
-            
-            return explode(",",substr($result,0,strlen($result)-1));
-    }
     
     
     
@@ -126,20 +111,6 @@ class Tables {
         return $this->getFirstRow("SELECT * FROM ".$this->tb." WHERE id='$id'");
     }
     
-    /* 
-     * Get from table _tables_fields how to filter the fields of $tb table 
-     */
-    function getFieldsFilter()
-    {
-        $this->base->connecta();
-        $row = $this->getFirstRow("SELECT fields FROM _tables_fields WHERE table_name='$this->tb'");
-        if ($row['fields']==NULL)
-            $chbvalues = "1111111111111111111111111"; //xxtoni  Mostrar tots els camps si la taula no existeix
-        else
-            $chbvalues = $row['fields'];
-
-        return $chbvalues;
-    }
     
     /* If there is an AUTOINCREMENT id field, then on Import-Export-Add the treatment is different.*/
     function isTableWithAutoInc() 

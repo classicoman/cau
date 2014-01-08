@@ -52,7 +52,7 @@ if (!$error)
                 if (test_input($line) == $email."@escoladisseny.com") {
                     $trobat=true;
                     break;
-                } 
+                }
             }
             if ($trobat) {  
                 // // Email introduit és correcte -> donar d'alta user
@@ -63,12 +63,25 @@ if (!$error)
                 $result = $tables->executaQuery($sql);
                 
                 // Fill the email fields.
-                $direccio = /*$email*/"informatic"."@escoladisseny.com"; //xxtoni
-                $subject = "Dades accés a cau.easdib.com";
-                $message = "<html><body><h1>Acces a <a href='http://cau.easdib.com'>http://cau.easdib.com</a></h1>"
-                        . "<ul><li>Usuari: <b>".$email."</b></li><li> Contrasenya: <b>".$_POST['password']."</b></li></ul>"
-                        . "</body></html>";
-                $headers =  "From:noreply@toniamengualsalas.com"
+                $direccio = "$email@escoladisseny.com";
+                $subject = "Les teves dades accés a web d'enviament d'incidències";
+            $message = "<html><body>"
+                       ."<h1>Acc&eacute;s a l'aplicaci&oacute; d'enviament d'incid&egrave;ncies <a href='http://cau.easdib.com'>http://cau.easdib.com</a></h1>"
+                    ."<h2>Dades d'acc&eacute;s</h2>"   
+                    ."<ul><li>Usuari: <b>".$email."</b></li><li> Contrasenya: <b>".$_POST['password']."</b></li></ul>"
+                    ."<h2>Com funciona?</h2>"
+                    ."<p style:'font-family: Helvetica; font-size:13px;'>"
+                    ."Aquesta web ha estat dissenyada per a que els professors de l'EASDIB hi pogueu accedir des del vostre "
+                    ."tel&egrave;fon m&ograve;bil i pogueu enviar incid&egrave;ncies inform&agrave;tiques a Suport Inform&agrave;tic (Toni Amengual)</p>"
+                    ."<p>A m&eacute;s de crear una nova <strong>Incid&egrave;ncia</strong> i consultar les que tingueu pendent de resoluci&oacute;, l'aplicaci&oacute; "
+                    ."tamb&eacute; vos permet escriure <strong>Comentaris</strong> sobre una incid&egrave;ncia <strong>oberta</strong>. Tamb&eacute; podeu <strong>tancar</strong> "
+                    ."una incid&egrave;ncia si trobau que el problema ha estat resolt.</p>"
+                    ."<p>Els comentaris que l'administrador vos envi&iuml; sobre les incid&egrave;ncies les rebreu "
+                    ."puntualment a la vostra adre&#231;a de correu electr&ograve;nic.</p>"
+                    ."<p>Per a qualsevol suggeriment o cr&iacute;tica (constructiva ;), enviau-me un correu a informatic@escoladisseny.com. Gr&agrave;cies</p>"
+                    ."<br><p>Toni Amengual</p>"
+                    . "</body></html>";
+                $headers =  "From:norespongueuaquestcorreu@easdib.com\r\n"
                         . "MIME-Version: 1.0\r\n"
                         ."Content-Type: text/html; charset=ISO-8859-1\r\n";
                 //Send the email
@@ -81,9 +94,8 @@ if (!$error)
                 //demani la  pagina main.php durà la cookie establerta.
                 $value = 'OK';
                 setcookie("usuari", $value, time() + 3600);  /* expire in 1 hour */
-
-                /* El codi és incomplet, he de controlar que aquest usuari té una sessió oberta.. 
-                 * no se com fer-ho mirar més codi...!! xxxtoni*/
+                /* M'he de mirar lo de les cookies: cal dominar aquest tema per seguretat i per gestionar de 
+                 * forma correcta (i òptima) les dades de sessió de l'usuari   -   xxxtoni*/
                 include 'index.php';
             } else  {
                 $error = 7;

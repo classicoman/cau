@@ -12,7 +12,7 @@ root {
 
 body {
     font-size: /*16px*/medium; /* http://ux.stackexchange.com/questions/7820/font-size-for-mobile-sites */
-    width:auto; /*xtoni*/
+    width:auto;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif/*Verdana*/;
 
     margin: 0px;

@@ -1,4 +1,6 @@
-<link rel="stylesheet" type="text/css" href="css/added.css"/>
+<link rel="stylesheet" type="text/css" href="css/added.css"/>  <!-- S'ha de posar al head de main - xtoni -->
+
+<input id="js_changed" name="js_changed" type="hidden"/>
 
 <div id="reg_saved" name="reg_saved">
     <div id="updating"><p>Updating...</p></div>
@@ -6,7 +8,7 @@
 <div id="header_added">
     <div id="rotul"><?php echo $dic[$title][0] ?></div>
     <div id="btnBack"></div>
-    <input id="js_changed" name="js_changed" type="hidden"/><!-- Canviar de lloc xtoni -->
+    <!-- Canviar de lloc xtoni -->
 </div>
 
 <div id="all">

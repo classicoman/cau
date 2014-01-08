@@ -28,7 +28,7 @@ foreach($rows as $row)
     }
 ?>
 
-<div class="<?php echo ($username=="admin") ? "row_admin" : "row_user"; /* xxxtoni */ ?>">  
+<div class="<?php echo ($username=="admin") ? "row_admin" : "row_user"; ?>">  
     <div class="header">
         <div class="username"><?php echo $row['username'] ?></div>
         <div class="hour"><?php echo $hour ?></div>

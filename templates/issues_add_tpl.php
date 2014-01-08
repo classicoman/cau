@@ -75,7 +75,7 @@ function threebuttonsdialog(button1, button2, button3, element){
             $(this).dialog("close");
         };
         //Obre un diàlog amb tants botons com haguem definit
-        //No sé per què utilitza <div></div>...  xxxtoni
+        //Per què utilitza <div></div>?...  xxxtoni
         $("<div></div>").dialog({
             autoOpen: true,
             resizeable: false,

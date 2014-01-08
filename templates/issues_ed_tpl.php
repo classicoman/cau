@@ -1,5 +1,6 @@
-<!-- EDIT an iSSUE  -  for users <> admin -->
-<link rel="stylesheet" type="text/css" href="css/added.css"/>
+<link rel="stylesheet" type="text/css" href="css/added.css"/>  <!-- S'ha de posar al head de main - xtoni -->
+
+<input id="js_changed" name="js_changed" type="hidden"/>
 
 <div id="reg_saved" name="reg_saved">
     <div id="updating" style="background:url(images/ajax-loader.gif) no-repeat left; height:50px; width:370px; display:none;">
@@ -9,7 +10,6 @@
 <div id="header_added">
     <div id="rotul"><?php echo $dic[$title][0] ?></div>
     <div id="btnBack"></div>
-    <input id="js_changed" name="js_changed" type="hidden"/><!-- Canviar de lloc xtoni -->
 </div>
 
 <div id="all">
@@ -30,12 +30,10 @@
           Ubicació:<input id="location" type="text" value="<?php echo $location ?>" readonly/>
       </div>
 <?php } ?>
-      </tr>
       <div id="buttons">
           <button type="button" id="btnClose" onclick="onClickClose()"><?php echo $dic['close'][0] ?>
           </button>                 
       </div>
-      </tr>
 </div>
 <div id="issues_comments_box">
 <?php  include 'templates/issues_comments.php';   ?>
@@ -96,7 +94,7 @@ function threebuttonsdialog(button1, button2, button3, element){
             $(this).dialog("close");
         };
         //Obre un diàlog amb tants botons com haguem definit
-        //No sé per què utilitza <div></div>...  xxxtoni
+        //Per què utilitza <div></div>?...  xxxtoni
         $("<div></div>").dialog({
             autoOpen: true,
             resizeable: false,

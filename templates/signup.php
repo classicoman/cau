@@ -22,7 +22,8 @@
                 </div>
                 <div class="row">
                     <input id="email" name="email" type="text"
-                           placeholder="E-mail" value="<?php echo $email ?>"/><span id="domainname">@escoladisseny.com</span>
+                           placeholder="E-mail" value="<?php echo $email ?>"/>
+                    <span id="domainname">@escoladisseny.com</span>
                 </div>
                 <div class="row">
                     <input placeholder="Password" id="password" name="password"/>
@@ -31,7 +32,8 @@
                     <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
                 </div>
                 <div class="row" id="captcha_code">
-                    Escriu el text:<input type="text" name="captcha_code" size="10" maxlength="6" />
+                    <span style='font-size: 1.3em;'>Escriu el text:</span>
+                    <input type="text" name="captcha_code" size="10" maxlength="6" />
                 </div>
                 <div class="row">
                     <a href="#" 

@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/comments.css"/>
 
 <div id="issues_comments">
-    <div id="label"><b>Comments:</b></div>
+    <div id="label"><b>Comentaris:</b></div>
     <div id="issues_comments_sub">
 <?php        
         /* Print the list of Comments */
@@ -11,9 +11,7 @@
 </div>
 <!-- Add a comment - Zone -->
 <div id="add_comment">
-    <div id="textarea">
-        <textarea id="comment_js"></textarea>
-    </div>    
+    <div id="textarea"> <textarea id="comment_js"></textarea> </div>    
     <div id="sendBtn"></div>
 </div>
 

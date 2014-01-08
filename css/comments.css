@@ -85,7 +85,7 @@
     background-color: #C8C8C8;
 }
 #textarea {
-    width: 82%; /* Calculat per a 320px  -  xxxtoni */
+    width: 82%;
     float:left;
 }
 #add_comment textarea {
