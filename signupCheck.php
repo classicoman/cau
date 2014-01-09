@@ -103,12 +103,15 @@ if (!$error)
         } else {
             echo "Error Opening the File";  //xxx toni Errors que he de tabular.
         }
-        }
+    }
 }
 
-if ($error!=0) {
-    //header("location:");
-    $location = "signup.php?error=$error&name=$name&surname=$surname&email=$email";
+if ($error!=0)  //El Sign Up s'ha fet el Sign Up
+{ 
+    include 'templates/signup.php';
+}
+else            //El Sign Up s'ha fet correctament
+{
+    include 'main.php';
+}
 ?>
-<script>window.location ='<?php echo $location ?>';</script>
-<?php } ?>

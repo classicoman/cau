@@ -1,31 +1,18 @@
 <?php
 session_start();
-if (isset($_SESSION['myusername']))
-    $session = true;
-else
-    $session=false;
-
+$session = (isset($_SESSION['myusername'])) ?   true  :  false;
 require_once '_basic.php';
 
-// Botar a SC_SIGNUP?
-$jump=false;
-if (isset($_GET['pg']))
-    if ($_GET['pg']=="signup") {
-        $jump=true;
-    }
-    
-if (!$jump)
-{
-    //Has the session been started? If not, 
-    if ( $session ) {
-        include 'main.php'; 
-    }
-    else {
-        include 'templates/login.php';
-    }
-}
+//Has the session been started? If not, 
+if ( $session )
+    include 'main.php'; 
 else {
-    require 'signup.php';
-    include 'templates/signup.php';
+    if ($pg=="signup") {
+        include 'templates/signup.php';    
+    } 
+    else
+    {
+        include 'templates/login.php';        
+    }
 }
 ?>

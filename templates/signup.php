@@ -42,6 +42,22 @@
                 <div class="row" id="login_button">
                     <button type="submit">Acceptar</button>
                 </div>
+                <div style="color:red">
+<?php
+        // Get and echo the error
+        if (defined($error))
+            switch($error) {
+                case 1:  echo "Captcha is incorrect";  break;
+                case 2:  echo "Password is too short";  break;
+                case 3:  echo "Email is empty";  break;
+                case 4:  echo "Surname is empty";  break;
+                case 5:  echo "Name is empty";  break;
+                case 6:  echo "Username is already in use";  break;
+                case 7: return "Username does not belong to Escola Virtual";  break;
+                default:  break;
+            }
+?>
+                </div>
             </form>	
         </div>
     </body>
