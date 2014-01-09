@@ -22,17 +22,17 @@
                 </div>
                 <div class="row">
                     <input id="email" name="email" type="text"
-                           placeholder="E-mail" value="<?php echo $email ?>"/>
+                           placeholder="Nom usuari" value="<?php echo $email ?>"/>
                     <span id="domainname">@escoladisseny.com</span>
                 </div>
                 <div class="row">
-                    <input placeholder="Password" id="password" name="password"/>
+                    <input placeholder="Contrasenya" id="password" name="password"/>
                 </div>
                 <div class="row">
                     <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
                 </div>
                 <div class="row" id="captcha_code">
-                    <span style='font-size: 1.3em;'>Escriu el text:</span>
+                    <span style='font-size: 1.3em;'>Escriu el text CAPTCHA:</span>
                     <input type="text" name="captcha_code" size="10" maxlength="6" />
                 </div>
                 <div class="row">
@@ -42,22 +42,9 @@
                 <div class="row" id="login_button">
                     <button type="submit">Acceptar</button>
                 </div>
-                <div style="color:red">
-<?php
-        // Get and echo the error
-        if (defined($error))
-            switch($error) {
-                case 1:  echo "Captcha is incorrect";  break;
-                case 2:  echo "Password is too short";  break;
-                case 3:  echo "Email is empty";  break;
-                case 4:  echo "Surname is empty";  break;
-                case 5:  echo "Name is empty";  break;
-                case 6:  echo "Username is already in use";  break;
-                case 7: return "Username does not belong to Escola Virtual";  break;
-                default:  break;
-            }
-?>
-                </div>
+                <span style='color:red; font-size:1.4em; padding-left: 10px'>
+<?php               echo getSignUpError($error);   ?>
+                </span>
             </form>	
         </div>
     </body>

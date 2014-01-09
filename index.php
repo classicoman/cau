@@ -4,10 +4,10 @@ $session = (isset($_SESSION['myusername'])) ?   true  :  false;
 require_once '_basic.php';
 
 //Has the session been started? If not, 
-if ( $session )
+if ($session)
     include 'main.php'; 
 else {
-    if ($pg=="signup") {
+    if ($_GET['pg']=="signup") {
         include 'templates/signup.php';    
     } 
     else

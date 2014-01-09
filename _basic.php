@@ -37,7 +37,19 @@ function getFieldsFilter($tb)
     return $chbvalues;
 }
 
-
+function getSignUpError($error)  {
+// Get and echo the error
+    switch($error) {
+        case 1:  return "El text de la CAPTCHA &eacute;s incorrecte";  break;
+        case 2:  return "La contrasenya ha de tenir m&iacutenim 8 caracters";  break;
+        case 3:  return "El nom d'usuari no pot ser buid";  break;
+        case 4:  return "Llinatges no pot ser buid";  break;
+        case 5:  return "Nom no pot ser buid";  break;
+        case 6:  return "El nom d'usuari ha estat donat d'alta pr&egrave;viament";  break;
+        case 7:  return "El nom d'usuari no correspon a cap professor";  break;
+        default: return "";
+    }
+}
 
 /* Funció per a determinar si l'identificador passat correspon al de l'administrador */
 function isUserAdmin($userId) {
