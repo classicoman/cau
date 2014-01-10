@@ -1,7 +1,9 @@
 /*SC_Addedd*/
 #header_added {
-    display: inline-block;
     width: 100%;
+    height: 60px;
+    display: inline-block;
+    padding-left: 10px;
     background-color: #15bbd5;
 }
 #rotul {
@@ -17,22 +19,11 @@
     width: 50px;
     float:right;
     text-align: right;
-    background: url("../images/back.png") no-repeat;
-    background-size: 50px 50px;
     
+    padding-right: 3px;
     cursor:pointer;
 }
-#btnBack:hover, #btnBack:active {
-    background: url("../images/back-b.png") no-repeat;
-    background-size: 50px 50px;
-}
     
-    
-/*
-div#back img {
-    height:45px;
-    width: 45px;
-}*/
 
 td.label {
     font-size: 0.8em;  
@@ -47,9 +38,11 @@ input#date_start {
 }
 textarea.desc {
     width: 100%;
-    font-size: 1.2em;
-    height: 120px;
-    width: 99%;
+    font-size: 1.3em;
+    height: 160px;
+}
+textarea.lowheight {
+    height: auto;
 }
 #location {
     font-size: 1em;

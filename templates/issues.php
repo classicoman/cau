@@ -2,10 +2,10 @@
 
 <div id="header">
     <div id="logo">
-        <img src="images/logo.png" alt="Logo"/>
+        <img src="images/logo2.png" alt="Logo"/>
     </div>
-    <div id="title">CAU - EASDIB 1.0</div>
-    <div id="username"><?php echo $username ?></div>
+    <div id="title">Incid&egrave;ncies ESD</div>
+    <div id="username"><?php echo "xxxxxxxx".$username ?></div>
 </div>
 <div id="menubar">
     <div id="menu">
@@ -21,51 +21,40 @@
           </ul>
         </div>
     </div>
-    <a href="index.php?pg=added&amp;id=0"><div id="add"></div></a>
+    <div id="add">
+        <a href="index.php?pg=added&amp;id=0"><img src="images/add.png"/></a>
+    </div>
 </div>
 
 <div id="all">
     <div id="div_rows">
-
-<?php  foreach ($rows as $row) {
-    
-        if ($count++==$maxRows)
-            break;
-        $id = $row['id'];
-        
-        //Determinar si hi ha incidències que s'han de marcar
-        $markIt= false;
-        //Perque és nova, creada per un Membre i jo sóm l'administrador
-        if (($row['bool_checked']==0) && isUserAdmin($rowmember['id']))
-            $markIt = true;
-        else
-        {
-            //Si tenc comentaris per llegir...
-            if (in_array($row['id'], $issuesWithComments)) {
-                $markIt = true;
-            }
-            /*
-            // Pq hi ha comments d'un Membre (si sóc admin) o bé de l'Admin (si sóc un Membre)
-            $sqlUsuari = " fkey_member". ( (isUserAdmin($rowmember['id'])) ? " <>3 " : "=3"); 
-            $unchecked = $tables->executaQuery("SELECT id FROM comments WHERE fkey_issue='".$row['id']."' AND bool_checked=0 AND $sqlUsuari");
-            $markIt = (dbIsQueryResultNull($unchecked)) ? false : true;
-            */
-        }   
-?>	
-        <div class="fila" onclick="javascript:location.href='<?php echo "index.php?pg=added&maxrows=$maxRows&id=$id" ?>'">
+<?php  foreach ($rows as $row)  {   ?>	    
+        <div class="fila" onclick="javascript:location.href='<?php echo "index.php?pg=added&maxrows=$maxRows&id=".$row['id'] ?>'">
             <div class="date">
                 <?php echo (isUserAdmin($rowmember['id'])) ? $row['username'].", " : "" ?>
                 <?php echo toWrittenDate($row['date_start']) ?>
             </div>
-            <div class="<?php echo ($markIt) ? 'name_new' : 'name' ?>">
+            <div class="<?php echo ($row['markIt']) ? 'name_new' : 'name' ?>">
                 <?php echo $row["name"] ?>
             </div>
-            <div class="<?php echo ($markIt) ? 'desc_new' : 'desc' ?>">
+            <div class="<?php echo ($row['markIt']) ? 'desc_new' : 'desc' ?>">
                 <?php echo (strlen($row["descripcio"])<80) ? $row["descripcio"] : substr($row["descripcio"],0,100)." [...]" ?>
             </div>
         </div>
-<?php   
-    }  
-?>  
+<?php }  ?>  
     </div>
 </div>
+
+
+<script>
+    //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre
+    $('a#add img')
+        .mouseover(function() { 
+            var src = "images/add-b.png";
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = "images/add.png";
+            $(this).attr("src", src);
+        });
+</script>

@@ -2,37 +2,21 @@
 
 <input id="js_changed" name="js_changed" type="hidden"/>
 
-<div id="reg_saved" name="reg_saved">
-    <div id="updating" style="background:url(images/ajax-loader.gif) no-repeat left; height:50px; width:370px; display:none;">
-        <p>Updating...</p>
-    </div>
-</div>    
 <div id="header_added">
     <div id="rotul"><?php echo $dic[$title][0] ?></div>
-    <div id="btnBack"></div>
+    <div id="btnBack"><a id="btnBack"><img src="images/back.png"/></a></div>
 </div>
 
 <div id="all">
-      <div><?php echo $dic['titleissue'][0] ?></div>
-      <div>
-          <input id="name" type="text" autofocus="autofocus" value="<?php echo $name ?>" readonly/> 
-      </div>
-      <div><?php echo $dic['description'][0] ?></div>
-      <div>
-          <textarea id="descripcio" class="desc" readonly><?php echo $row['descripcio'] ?></textarea>
-      </div>
+      <div><?php echo $dic['titleissue'][0].":" ?></div>
+      <div><strong><?php echo $name ?></strong></div>
+      <div><?php echo $dic['description'][0].":" ?></div>
+      <div> <strong><?php echo $row['descripcio'] ?></strong></div>
       <div class="fila">
-          Data Inici:<input id="date_start" type="text" name="date_start"
-                    placeholder="Data Inici" value="<?php echo toMyDate($date_start) ?>" readonly/>
-      </div>
+          Data Inici:<strong><?php echo " ".toMyDate($date_start)."  " ?></strong>
 <?php if ($location!="")  {  ?>
-      <div class="fila">
-          Ubicació:<input id="location" type="text" value="<?php echo $location ?>" readonly/>
-      </div>
+          Ubicació:<?php echo "<strong> $location</strong>" ?>
 <?php } ?>
-      <div id="buttons">
-          <button type="button" id="btnClose" onclick="onClickClose()"><?php echo $dic['close'][0] ?>
-          </button>                 
       </div>
 </div>
 <div id="issues_comments_box">
@@ -45,18 +29,10 @@
 <script type="text/javascript">    
 //Activation of 'SAVE' mode
     $('#name, #descripcio, #date_start, #fkey_prioritat, #fkey_location').change ( function(e) {
+        //Activa el mode SAVE
         document.getElementById('js_changed').value = 'SAVE';
     });
     
-//Save Data
-    function onClickSave() {
-        //Hi ha hagut algun canvi?
-        if (document.getElementById('js_changed').value=='SAVE') {
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>);
-        }
-        //Torna a l'estat inicial
-        document.getElementById('js_changed').value = '';
-    }
 
 //Close Issue
     function onClickClose() {
@@ -64,9 +40,19 @@
             loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=CLOSE&state=$state'" ?>);
     }
 
-
-//En espitjar sobre fletxa de BACK
-    $('#btnBack').click ( function(e) { 
+    //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre
+    $('a#btnBack img')
+        .mouseover(function() { 
+            var src = "images/back-b.png";
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = "images/back.png";
+            $(this).attr("src", src);
+        });
+        
+    //En espitjar sobre fletxa de BACK
+    $('a#btnBack').click ( function() { 
         if (document.getElementById('js_changed').value == 'SAVE')
             threebuttonsdialog('Si', 'No', 'Cancel·lar', $(this));
         else

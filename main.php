@@ -44,19 +44,21 @@ switch ($pg) {
         //Si es un User no Admin, seleccionar Issues per user.
         $sqlMember = (!isUserAdmin($rowmember['id'])) ? " AND fkey_member=$memberid "  :  "";
 
-        //Tipus de Issues que he demostrar= obertes o tancades
+        //Tipus de Issues que he demostrar = obertes o tancades
         $class = (isset($_GET['class'])) ? (   ($_GET['class']=='0') ? 0 : 1   ) : 0;
         $classOfIssues = ($class==0) ? "fkey_state='1'" : "(fkey_state='2' OR fkey_state='3')";
 
-        //Selecciona Files
+        //Selecciona Incidències a Mostrar
         $sql =  "SELECT iss.id, iss.name, iss.descripcio, iss.date_start, iss.fkey_member AS fkey_member, "
                 . "iss.bool_checked, me.username "
                 . "FROM issues iss INNER JOIN members me ON iss.fkey_member=me.id "
                 . "WHERE $classOfIssues "
                 . "$sqlMember ORDER BY id DESC";
-        $rows = $tables->executaQuery($sql);
+        $files = $tables->executaQuery($sql);
         
-        //Get the Issues that have Comments by another user unchecked by 
+        //Get the Issues that have Comments unchecked
+        //If the present user is the admin, the issues that have unchecked comments are selected (to be marked in bold in the template)
+        //If the present user is not the admin, get the issues written that have comments written by another user (which can only be the admin)
         $sql2 = "SELECT iss.id"
                 ." FROM issues iss"
                         ." LEFT OUTER JOIN comments co ON iss.id = co.fkey_issue"
@@ -65,11 +67,42 @@ switch ($pg) {
                        . " AND co.fkey_member <> $memberid"
                 ." GROUP BY iss.id";
         $prov = $tables->executaQuery($sql2);
+        //Put the issues ids inside the array $issuesWithComments
         $issuesWithComments = array();
         foreach ($prov as $p) {
             array_push($issuesWithComments, $p['id']);
         }
+        
+        //Now process the issues stored in $files to create the Data Structure $rows that will be used to generate the Template
         $count=0;
+        foreach ($files as $row) 
+        {
+            //Bota si ha arribat al màxim de files ($maxRows)
+            if ($count==$maxRows) break;
+            
+            //Ara determinarem si aquesta incidència s'ha de marcar
+            $markIt= false;
+            //Perque és nova, creada per un Membre i jo sóm l'administrador
+            if (($row['bool_checked']==0) && isUserAdmin($rowmember['id']))
+                $markIt = true;
+            else
+            {
+                //Si tenc comentaris per llegir...
+                if (in_array($row['id'], $issuesWithComments)) {
+                    $markIt = true;
+                }
+            }   
+            //Omple l'Estructura de Dades
+            $rows[$count]['id']         = $row['id'];
+            $rows[$count]['username']   = $row['username'];
+            $rows[$count]['date_start'] = $row['date_start'];
+            $rows[$count]['name']       = $row['name'];
+            $rows[$count]['descripcio'] = $row['descripcio'];
+            //Indico si cal marcar la Issue en fer el llistat
+            $rows[$count]['markIt']     = $markIt;
+            
+            $count++;
+        }
         break;
 }        
 

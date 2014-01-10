@@ -2,13 +2,11 @@
 <link rel="stylesheet" type="text/css" href="css/added.css"/>
 
 <div id="reg_saved" name="reg_saved">
-    <div id="updating" style="background:url(images/ajax-loader.gif) no-repeat left; height:50px; width:370px; display:none;">
-        <p>Updating...</p>
-    </div>
+    <div id="updating"><p>Guardant...</p></div>
 </div>    
 <div id="header_added">
     <div id="rotul"><?php echo $dic[$title][0] ?></div>
-    <div id="btnBack"></div>
+    <div id="btnBack"><a id="btnBack"><img src="images/back.png"/></a></div>
     <input id="js_changed" name="js_changed" type="hidden"/><!-- Canviar de lloc xtoni -->
 </div>
 
@@ -40,21 +38,35 @@
     function onClickSave() {
         //Hi ha hagut algun canvi?
         if (document.getElementById('js_changed').value=='SAVE') {
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>);
+            //Executo Ajax de forma Síncrona, ja que en tornar a la pàgina Issues surti la
+            //Incidència que estic creant ara.
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>, false);
         }
-        //Torna a l'estat inicial
+        //Desactiva el mode SAVE
         document.getElementById('js_changed').value = '';
+        //Torna a pantalla Issues (després d'haver-se executat síncronament Ajax en la instrucció anterior)
+        window.location ='index.php?pg=issues';
     }
 
-//En espitjar sobre fletxa de BACK
-    $('#btnBack').click ( function(e) { 
+    //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre
+    $('a#btnBack img')
+        .mouseover(function() { 
+            var src = "images/back-b.png";
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = "images/back.png";
+            $(this).attr("src", src);
+        });
+        
+    //En espitjar sobre fletxa de BACK
+    $('a#btnBack').click ( function() { 
         if (document.getElementById('js_changed').value == 'SAVE')
             threebuttonsdialog('Si', 'No', 'Cancel·lar', $(this));
         else
             window.location ='index.php?pg=issues';
     });
 
-/* coderefx: http://jsfiddle.net/CdwB9/3/ */
 //Three buttons Dialog that is prompted after closing an issue without saving
 function threebuttonsdialog(button1, button2, button3, element){
         var btns = {};

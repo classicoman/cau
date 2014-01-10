@@ -67,7 +67,7 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
     //http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
     //http://stackoverflow.com/questions/894860/set-a-default-parameter-value-for-a-javascript-function
     //Establir el valor per defecte d'un paràmetre
-     fields = typeof fields !== 'undefined' ? fields : '';
+   fields = typeof fields !== 'undefined' ? fields : '';
    async = typeof async !== 'undefined' ? async : true;
     var xmlhttp = createXMLHttpObject();
     xmlhttp.onreadystatechange = function()
@@ -78,12 +78,10 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
     }
 
 /* Add the values of the fields for the Update of the Draft */
-    if (f!=='')
-        f += getFieldsWithValues(fields);
+    if (f!=='')  f += getFieldsWithValues(fields);
         
     //Show the Updater loader image - Excepte en el cas especial Sincrònic
-    if (async)
-        $('#updating').show();
+    if (async)   $('#updating').show();
     
     //Send the AJAX request, with parameter sync set to true or false, depending
     //of the type of response is needed

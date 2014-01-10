@@ -88,8 +88,9 @@
     width: 82%;
     float:left;
 }
-#add_comment textarea {
-    font-size: 1em;
+
+#comment_js {
+    font-size: 1.35em;
     width: 100%;
     font-family: Verdana; /*Si no ho poso aquí, no agafa la de main.css */
     
@@ -99,16 +100,15 @@
 }
 
 
-
-#sendBtn {
+div#sendBtn {
     height: 50px;
     width: 50px;
+
     float:right;
-    
-    background-image: url("../images/6_social_send_now.png");
-    background-repeat:no-repeat;
-    background-position:left top;
 }
-#sendBtn:hover {
-    background-image: url("../images/6_social_send_now2.png");    
+div#sendBtn img{
+    height: 50px;
+    width: 50px;
+    
+    cursor: pointer;
 }

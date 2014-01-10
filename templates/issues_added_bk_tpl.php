@@ -3,12 +3,11 @@
 <input id="js_changed" name="js_changed" type="hidden"/>
 
 <div id="reg_saved" name="reg_saved">
-    <div id="updating"><p>Updating...</p></div>
+    <div id="updating"><p>Guardant...</p></div>
 </div>    
 <div id="header_added">
     <div id="rotul"><?php echo $dic[$title][0] ?></div>
-    <div id="btnBack"></div>
-    <!-- Canviar de lloc xtoni -->
+    <div id="btnBack"><a id="btnBack"><img src="images/back.png"/></a></div>
 </div>
 
 <div id="all">
@@ -46,6 +45,17 @@
     $(function() {
         $( "#date_start" ).datepicker({ dateFormat: 'dd-mm-yy' }).val(); 
     });
+
+    //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre
+    $('a#btnBack img')
+        .mouseover(function() { 
+            var src = "images/back-b.png";
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = "images/back.png";
+            $(this).attr("src", src);
+        });
     
 //Activation of 'SAVE' mode
     $('#name, #descripcio, #date_start, #fkey_prioritat, #fkey_location').change ( function(e) {
