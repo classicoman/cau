@@ -5,13 +5,13 @@
         <!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>-->
         <!-- Fit the screen for mobile devices -->
         <meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" /> 
-        <link rel="stylesheet" type="text/css" href="css/signup.css"/>	
+        <link rel="stylesheet" type="text/css" href="../css/signup.css"/>	
         <script src="js/ajax.js"></script>
     </head>
     <body>
         <div id="login-header">CAU - EASDIB</div>
         <div id="signup-fields">
-            <form id="signup-form" name="signupForm" method="post" action="signupCheck.php">
+            <form id="signup-form" name="signupForm" method="post" action="controllers/signupCheck.php">
                 <div class="row">
                     <input name="name" type="text" autofocus="autofocus"
                            placeholder="Nom" value="<?php echo $name ?>"/> 

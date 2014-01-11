@@ -40,7 +40,7 @@
         if (document.getElementById('js_changed').value=='SAVE') {
             //Executo Ajax de forma Síncrona, ja que en tornar a la pàgina Issues surti la
             //Incidència que estic creant ara.
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>, false);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>, false);
         }
         //Desactiva el mode SAVE
         document.getElementById('js_changed').value = '';
@@ -72,7 +72,7 @@ function threebuttonsdialog(button1, button2, button3, element){
         var btns = {};
         btns[button1] = function(){
             //1.Yes -> Save data with SYNC
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id','$fields_s'" ?>,false);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id','$fields_s'" ?>,false);
             /* I need this code to: save first or it won't save, and to save before going to index.php */
             window.location ='index.php?pg=issues';
                 $(this).dialog("close");

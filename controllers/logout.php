@@ -6,5 +6,6 @@
    
    session_destroy();
 
+   //Back to index page
    header("location:index.php");
 ?>

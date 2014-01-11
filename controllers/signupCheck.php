@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once '_basic.php';
-require_once 'model/Tables.php';
+require_once '../_basic.php';
+require_once '../model/Tables.php';
 $tables = new Tables();
 
 function test_input($data) {
@@ -15,7 +15,7 @@ $error = 0;
  * de http://www.phpcaptcha.org/documentation/quickstart-guide/ */
 
 //Captcha.
-include_once 'securimage/securimage.php';
+include_once '../securimage/securimage.php';
 //Object Securimage
 $securimage = new Securimage();
 //Comprova si l'usuari ha escrit el codi Captcha
@@ -43,7 +43,7 @@ if (!$error)
        $error = 6;
     else {
         //Open emails file
-        $handle = fopen("emails.txt", "r");
+        $handle = fopen("files/emails.txt", "r");
         if ($handle) {
             //Look for user in the table
             $trobat=false;
@@ -108,10 +108,10 @@ if (!$error)
 
 if ($error!=0)  //El Sign Up s'ha fet el Sign Up
 { 
-    include 'templates/signup.php';
+    include '../templates/signup.php';
 }
 else            //El Sign Up s'ha fet correctament
 {
-    include 'main.php';
+    include '../main.php';
 }
 ?>

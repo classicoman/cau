@@ -5,7 +5,7 @@
         <img src="images/logo2.png" alt="Logo"/>
     </div>
     <div id="title">Incid&egrave;ncies ESD</div>
-    <div id="username"><?php echo "xxxxxxxx".$username ?></div>
+    <div id="username"><?php echo $username ?></div>
 </div>
 <div id="menubar">
     <div id="menu">
@@ -17,7 +17,7 @@
                 <li><a href="index.php?pg=issues&amp;class=0">Obertes</a></li>
                 <li><a href="index.php?pg=issues&amp;class=1">Tancades</a></li>
                 <li class="divider"></li>
-                <li><a href="logout.php"><?php echo $dic['signout'][0] ?></a></li>
+                <li><a href="index.php?pg=logout"><?php echo $dic['signout'][0] ?></a></li>
           </ul>
         </div>
     </div>

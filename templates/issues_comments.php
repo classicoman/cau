@@ -19,7 +19,7 @@
 //Add a New comment
 $("#sendBtn").click( function(e) {
     if ($("#comment_js").val()!="")
-    loadXMLDoc('issues_comments_sub','<?php echo "issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id'] ?>','NEWCOM');
+    loadXMLDoc('issues_comments_sub','<?php echo "ajax/issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id'] ?>','NEWCOM');
 });
 
 //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre

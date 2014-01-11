@@ -11,7 +11,7 @@
     <body>
         <div id="login-header">CAU - EASDIB 1.0</div>
         <div id="login-fields">
-            <form id="login-form" name="userCheck" method="post" action="logincheck.php">
+            <form id="login-form" name="userCheck" method="post" action="controllers/logincheck.php">
                 <div class="row">
                     <div class="label"> Usuari: </div>
                 </div>

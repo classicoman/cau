@@ -1,6 +1,7 @@
 <?php
-require_once'_basic.php';
-require_once 'model/Tables.php';
+require_once'../_basic.php';
+require_once '../model/Tables.php';
+
 $tables = new Tables();
 
 /* Get the fields of the table */

@@ -22,7 +22,7 @@ $tables = new Tables();
 if (isset($_GET['maxrows']))
     $maxRows = $_GET['maxrows'];
 else {
-    $xml = loadConfigFile("_config.xml");
+    $xml = loadConfigFile("files/_config.xml");
     $maxRows = $xml->params->param[0]->value;
 }
 
@@ -35,8 +35,11 @@ $rowmember = $tables->getFirstRow("SELECT id FROM members WHERE username='$usern
 /* Controllers */
 
 switch ($pg) {
+    case "logout":
+        include 'controllers/logout.php';
+        break;
     case "added":
-        include 'issues_added.php';
+        include 'controllers/issues_added.php';
         break;
     default: /* issues */
         $rowmember = $tables->getFirstRow("SELECT id FROM members WHERE username='$username'");

@@ -66,7 +66,7 @@
     function onClickSave() {
         //Hi ha hagut algun canvi?
         if (document.getElementById('js_changed').value=='SAVE') {
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>);
         }
         //Torna a l'estat inicial
         document.getElementById('js_changed').value = '';
@@ -75,7 +75,7 @@
 //Close Issue
     function onClickClose() {
         if (confirm('Segur que voleu tancar la Incidència?')) 
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id&op=CLOSE&state=$state'" ?>);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=CLOSE&state=$state'" ?>);
     }
 
 
@@ -93,10 +93,10 @@ function threebuttonsdialog(button1, button2, button3, element){
         var btns = {};
         btns[button1] = function(){
             //1.Yes -> Save data with SYNC
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','issues_addedX.php?id=$id','$fields_s'" ?>,false);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>,false);
             /* I need this code to: save first or it won't save, and to save before going to index.php */
             window.location ='index.php?pg=issues';
-                $(this).dialog("close");
+            $(this).dialog("close");
         };
         btns[button2] = function(){ 
             //2.No -> Jump.

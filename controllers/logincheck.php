@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'model/Tables.php';
+require_once '../model/Tables.php';
 $tables = new Tables();
 
 /* username and password sent from form are cleaned to avoid MySQL injection - 
@@ -56,6 +56,5 @@ if (  (crypt($mypassword, $encriptada) == $encriptada) && !$cancela ) {
 }
 ?>
 <?php   if (!$cancela)   
-    header('location:index.php');
+    header('location:../index.php');
 ?>
-<!-- <script>window.location = "";</script> -->

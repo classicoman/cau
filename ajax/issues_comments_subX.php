@@ -1,6 +1,7 @@
 <?php
-require_once '_basic.php';
-require_once 'model/Tables.php';
+require_once '../_basic.php';
+require_once '../model/Tables.php';
+
 $tables = new Tables();
 
 switch($_GET['op']) 
@@ -16,7 +17,7 @@ switch($_GET['op'])
         $sql .= " VALUES('$hour','$issue','$name',0,$member)";
         $y = $tables->executaQuery($sql);
         
-        include 'templates/issues_comments_sub.php';
+        include '../templates/issues_comments_sub.php';
         
         break;
     //Detach $cat from this $issue
