@@ -77,12 +77,13 @@ switch ($pg) {
         }
         
         //Now process the issues stored in $files to create the Data Structure $rows that will be used to generate the Template
+        $rows = array();
         $count=0;
         foreach ($files as $row) 
         {
             //Bota si ha arribat al màxim de files ($maxRows)
             if ($count==$maxRows) break;
-            
+    
             //Ara determinarem si aquesta incidència s'ha de marcar
             $markIt= false;
             //Perque és nova, creada per un Membre i jo sóm l'administrador
@@ -149,7 +150,7 @@ switch ($pg) {
                 break;
             
             default:
-                include 'issues.php';
+                include 'templates/issues.php';
                 break;
         }        
 ?>

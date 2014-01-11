@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-require_once '../_basic.php';
-require_once '../model/Tables.php';
+require_once '_basic.php';
+require_once 'model/Tables.php';
 $tables = new Tables();
 
 function test_input($data) {
@@ -15,7 +13,7 @@ $error = 0;
  * de http://www.phpcaptcha.org/documentation/quickstart-guide/ */
 
 //Captcha.
-include_once '../securimage/securimage.php';
+include_once 'securimage/securimage.php';
 //Object Securimage
 $securimage = new Securimage();
 //Comprova si l'usuari ha escrit el codi Captcha
@@ -90,13 +88,11 @@ if (!$error)
                 //Set Session Username.
                 session_start();
                 $_SESSION['myusername'] = $email;
+                
                 //Creo una cookie amb el nom d'usuari. Aquesta cookie s'enviarà al browser amb la primera pàgina de contingut. Després, cada vegada que l'usuari
                 //demani la  pagina main.php durà la cookie establerta.
                 $value = 'OK';
-                setcookie("usuari", $value, time() + 3600);  /* expire in 1 hour */
-                /* M'he de mirar lo de les cookies: cal dominar aquest tema per seguretat i per gestionar de 
-                 * forma correcta (i òptima) les dades de sessió de l'usuari   -   xxxtoni*/
-                include 'index.php';
+                setcookie("usuari", $value, time() + 3600);  /* expire in 1 hour   xxxtoni*/
             } else  {
                 $error = 7;
             }
@@ -104,14 +100,5 @@ if (!$error)
             echo "Error Opening the File";  //xxx toni Errors que he de tabular.
         }
     }
-}
-
-if ($error!=0)  //El Sign Up s'ha fet el Sign Up
-{ 
-    include '../templates/signup.php';
-}
-else            //El Sign Up s'ha fet correctament
-{
-    include '../main.php';
 }
 ?>

@@ -11,7 +11,7 @@
     <body>
         <div id="login-header">CAU - EASDIB</div>
         <div id="signup-fields">
-            <form id="signup-form" name="signupForm" method="post" action="controllers/signupCheck.php">
+            <form id="signup-form" name="signupForm" method="post" action="index.php?pg=signupCheck">
                 <div class="row">
                     <input name="name" type="text" autofocus="autofocus"
                            placeholder="Nom" value="<?php echo $name ?>"/> 
