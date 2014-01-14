@@ -57,6 +57,17 @@ class Tables {
     }
     
     
+    //xtoni - hauria d'anar a una classe anomenada Members.php
+    function getMemberEmail($member) {
+        $row = $this->getFirstRow("SELECT email FROM members WHERE id=$member");
+        return $row['email'];
+    }
+    
+    //xtoni - igual que la superior
+    function getIssue($issue) {
+        return $this->getFirstRow("SELECT * FROM issues WHERE id=$issue"); 
+    }
+    
     /* Print a LISTBOX of a table derived from a FK field, with a certain value */
     function getListBoxHTML($f, $tb, $v) 
     {

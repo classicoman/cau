@@ -26,6 +26,7 @@
     </div>
 </div>
 
+
 <!-- Put the JQuery always at the bottom or it won't work! -->
 <script type="text/javascript">
         

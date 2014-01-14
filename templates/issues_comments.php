@@ -24,7 +24,7 @@ $("#sendBtn").click( function(e) {
         var name = encodeURIComponent(document.getElementById('comment_js').value);
     
         loadXMLDoc('issues_comments_sub',
-                   '<?php echo "ajax/issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id']."&name=".name ?>');
+                   '<?php echo "ajax/issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id']."&name=" ?>'+name);
     } 
 });
 
