@@ -6,7 +6,6 @@ $tables = new Tables();
 
 switch($_GET['op']) 
 {
-
     //Create a New comment attached to $issue
     case "NEW":
         $name = htmlspecialchars($_GET['name'], ENT_QUOTES);

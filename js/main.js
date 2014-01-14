@@ -96,36 +96,18 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
  *  Parameters:
  *      div:      The div where the code is going to be placed.
  *      f:        Number of the Ajax File to be executed in asynchronic mode
- *      param:    An optional parameter that indicates the operation to develop.
  *      async:    it should be true, normaly. Set to false when need synchronization
  *                with another Javascript action or function  xxxtoni search coderef in
  *                notifyIssue application! 
- *      param2:   Parametre auxiliar that I need when I check/uncheck a category/type in 'items_cats_sub.php' and 'items_types_sub.php'
  */
-function loadXMLDoc(div,f,param,async,param2)
+function loadXMLDoc(div,f,async)
 {   
-    param =  typeof param !== 'undefined' ? param : '';
     async =  typeof async !== 'undefined' ? async : true;
-    param2 = typeof param2 !== 'undefined' ? param2 : '';
 
-
-    switch (param)
-    {
-        case 'NEWCOM':  /* Create a new Coment */
-            // Escapar caracters conflictius.
-            f += "&name=" + encodeURIComponent(document.getElementById('comment_js').value);   
-            //Empty the fields
-            document.getElementById('comment_js').value = '';
-            break;
-
-    }
-
-$.ajax({
-        type: "GET", /* Crec que per defecte és GET */
-        url: f,
-        async: async,
+    $.ajax({
+        type: "GET",  url: f,  async: async,
         success : function(resultat) {
-    //He de resoldre el problema de la sincronia expressat més avall
+            //He de resoldre el problema de la sincronia expressat més avall
             $("#"+div).html(resultat);
         }
     });
