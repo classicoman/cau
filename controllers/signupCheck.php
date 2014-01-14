@@ -79,7 +79,7 @@ if (!$error)
                     ."<p>Per a qualsevol suggeriment o cr&iacute;tica (constructiva ;), enviau-me un correu a informatic@escoladisseny.com. Gr&agrave;cies</p>"
                     ."<br><p>Toni Amengual</p>"
                     . "</body></html>";
-                $headers =  "From:norespongueuaquestcorreu@easdib.com\r\n"
+                $headers =  "From:norespongueu@easdib.com\r\n" 
                         . "MIME-Version: 1.0\r\n"
                         ."Content-Type: text/html; charset=ISO-8859-1\r\n";
                 //Send the email

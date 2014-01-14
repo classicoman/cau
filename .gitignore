@@ -1,6 +1,13 @@
+#####
+## Netbeans (xtoni)
+#####
+.nbproject/private/private.properties
+
 #################
 ## Eclipse
 #################
+
+
 
 *.pydevproject
 .project

@@ -63,12 +63,10 @@ function getFieldsWithValues(fields)
 /* Gets all the fields (except the id and passes them via Ajax to a function */
 function loadXMLUpdateSyncOrNot(id,f,fields,async)
 {
-    //Work with synchronic mode:
-    //http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
-    //http://stackoverflow.com/questions/894860/set-a-default-parameter-value-for-a-javascript-function
-    //Establir el valor per defecte d'un paràmetre
-   fields = typeof fields !== 'undefined' ? fields : '';
-   async = typeof async !== 'undefined' ? async : true;
+    //Work with synchronic mode
+    fields = typeof fields !== 'undefined' ? fields : '';
+    async  = typeof async !== 'undefined'  ? async  : true;
+    
     var xmlhttp = createXMLHttpObject();
     xmlhttp.onreadystatechange = function()
     { if (xmlhttp.readyState==4 && xmlhttp.status==200) {
@@ -79,13 +77,14 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
 
 /* Add the values of the fields for the Update of the Draft */
     if (f!=='')  f += getFieldsWithValues(fields);
-        
+  
     //Show the Updater loader image - Excepte en el cas especial Sincrònic
     if (async)   $('#updating').show();
     
     //Send the AJAX request, with parameter sync set to true or false, depending
-    //of the type of response is needed
-    xmlhttp.open("GET",f+"&fields=" + fields, async);
+    //of the type of response needed
+    f += "&fields=" + fields;
+    xmlhttp.open("GET",f, async);
     xmlhttp.send();
     if (!async)  //This is the UNusual Synchronic behaviour I need for my dialog.
         document.getElementById(id).innerHTML = xmlhttp.responseText;
@@ -97,36 +96,18 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
  *  Parameters:
  *      div:      The div where the code is going to be placed.
  *      f:        Number of the Ajax File to be executed in asynchronic mode
- *      param:    An optional parameter that indicates the operation to develop.
  *      async:    it should be true, normaly. Set to false when need synchronization
  *                with another Javascript action or function  xxxtoni search coderef in
  *                notifyIssue application! 
- *      param2:   Parametre auxiliar that I need when I check/uncheck a category/type in 'items_cats_sub.php' and 'items_types_sub.php'
  */
-function loadXMLDoc(div,f,param,async,param2)
+function loadXMLDoc(div,f,async)
 {   
-    param =  typeof param !== 'undefined' ? param : '';
     async =  typeof async !== 'undefined' ? async : true;
-    param2 = typeof param2 !== 'undefined' ? param2 : '';
 
-
-    switch (param)
-    {
-        case 'NEWCOM':  /* Create a new Coment */
-            // Escapar caracters conflictius.
-            f += "&name=" + encodeURIComponent(document.getElementById('comment_js').value);   
-            //Empty the fields
-            document.getElementById('comment_js').value = '';
-            break;
-
-    }
-
-$.ajax({
-        type: "GET", /* Crec que per defecte és GET */
-        url: f,
-        async: async,
+    $.ajax({
+        type: "GET",  url: f,  async: async,
         success : function(resultat) {
-    //He de resoldre el problema de la sincronia expressat més avall
+            //He de resoldre el problema de la sincronia expressat més avall
             $("#"+div).html(resultat);
         }
     });

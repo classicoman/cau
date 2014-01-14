@@ -15,11 +15,17 @@
     <div id="sendBtn"><img src="images/6_social_send_now.png" /></div>
 </div>
 
+
 <script>
 //Add a New comment
 $("#sendBtn").click( function(e) {
-    if ($("#comment_js").val()!="")
-    loadXMLDoc('issues_comments_sub','<?php echo "ajax/issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id'] ?>','NEWCOM');
+    if ($("#comment_js").val()!="")  {
+        //Escape with encodeURIComponent()
+        var name = encodeURIComponent(document.getElementById('comment_js').value);
+    
+        loadXMLDoc('issues_comments_sub',
+                   '<?php echo "ajax/issues_comments_subX.php?op=NEW&issue=$issue&member=".$rowmember['id']."&name=" ?>'+name);
+    } 
 });
 
 //Per a canviar el color de la icona quan és espitjada o s'hi passa per sobre

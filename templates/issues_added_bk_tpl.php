@@ -66,10 +66,11 @@
     function onClickSave() {
         //Hi ha hagut algun canvi?
         if (document.getElementById('js_changed').value=='SAVE') {
-            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>);
+            loadXMLUpdateSyncOrNot(<?php echo "'reg_saved','ajax/issues_addedX.php?id=$id&op=UPDATE','$fields_s'" ?>,false);
         }
         //Torna a l'estat inicial
         document.getElementById('js_changed').value = '';
+        $('#updating').hide();
     }
 
 //Close Issue
