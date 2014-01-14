@@ -63,12 +63,10 @@ function getFieldsWithValues(fields)
 /* Gets all the fields (except the id and passes them via Ajax to a function */
 function loadXMLUpdateSyncOrNot(id,f,fields,async)
 {
-    //Work with synchronic mode:
-    //http://www.w3schools.com/ajax/ajax_xmlhttprequest_send.asp
-    //http://stackoverflow.com/questions/894860/set-a-default-parameter-value-for-a-javascript-function
-    //Establir el valor per defecte d'un paràmetre
-   fields = typeof fields !== 'undefined' ? fields : '';
-   async = typeof async !== 'undefined' ? async : true;
+    //Work with synchronic mode
+    fields = typeof fields !== 'undefined' ? fields : '';
+    async  = typeof async !== 'undefined'  ? async  : true;
+    
     var xmlhttp = createXMLHttpObject();
     xmlhttp.onreadystatechange = function()
     { if (xmlhttp.readyState==4 && xmlhttp.status==200) {
@@ -79,13 +77,14 @@ function loadXMLUpdateSyncOrNot(id,f,fields,async)
 
 /* Add the values of the fields for the Update of the Draft */
     if (f!=='')  f += getFieldsWithValues(fields);
-        
+  
     //Show the Updater loader image - Excepte en el cas especial Sincrònic
     if (async)   $('#updating').show();
     
     //Send the AJAX request, with parameter sync set to true or false, depending
-    //of the type of response is needed
-    xmlhttp.open("GET",f+"&fields=" + fields, async);
+    //of the type of response needed
+    f += "&fields=" + fields;
+    xmlhttp.open("GET",f, async);
     xmlhttp.send();
     if (!async)  //This is the UNusual Synchronic behaviour I need for my dialog.
         document.getElementById(id).innerHTML = xmlhttp.responseText;
