@@ -14,7 +14,7 @@ class Tables {
     
     
     function deleteById($id) {
-        $this->base->executaQuery("DELETE FROM ".$this->tb." where id='$id'");
+        $this->base->executaQuery("DELETE FROM ".$this->tb." where id= :id",array('id'),array($id));
     }
 
     
@@ -24,8 +24,8 @@ class Tables {
     }
     
     
-    function executaQuery($queryString) {
-        return $this->base->executaQuery($queryString);
+    function executaQuery($queryString, $fields=null, $values=null) {
+        return $this->base->executaQuery($queryString, $fields, $values);
     }
     
     
@@ -44,10 +44,10 @@ class Tables {
     
     
     /*xtoni Codi a Optimitzar per a que només tregui una fila */
-    function getFirstRow($queryString)
+    function getFirstRow($queryString, $fields=null, $values=null)
     {
         try {
-            $rows = $this->base->executaQuery($queryString);
+            $rows = $this->base->executaQuery($queryString, $fields, $values);
         } 
         catch (PDOException $err) {
             echo "<p>Error en executar Query, DB.php: <i>".$err."</i></p><p>".$queryString."</p>"; 

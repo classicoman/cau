@@ -59,14 +59,23 @@ class DB {
 
     
     /* Execute a Query in the database. */
-    function executaQuery($queryString) {
+    function executaQuery($queryString, $fields=null, $values=null) {
         //Connect to the DataBase
         $this->connecta();
         try {
-            $rows = $this->dbh->query($queryString);
+            if ($fields!=null) {
+                $params = array();
+                for ($i=0; $i<count($fields); $i++) {
+                    $params[ $fields[$i] ] = $values[$i];
+                }
+                $rows = $this->dbh->prepare($queryString);
+                $rows->execute($params);
+            } else {
+                $rows = $this->dbh->query($queryString);
+            }
         } 
         catch (PDOException $err) {
-            echo "<p>Error en executar Query, DB.php:  <i>".$err."</i></p><p>".$queryString."</p>";
+            //echo "<p>Error en executar Query, DB.php:  <i>".$err."</i></p><p>".$queryString."</p>";
             exit;
         }
         return $rows;

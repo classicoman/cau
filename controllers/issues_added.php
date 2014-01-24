@@ -18,16 +18,19 @@ if (!$id)
 } 
 else
 {      //It's an EDIT
-    $sql = "SELECT iss.name,iss.descripcio,iss.fkey_prioritat,iss.date_start,iss.bool_checked, ".
-            "iss.fkey_location, lo.name AS location_name ".
-            "FROM issues AS iss LEFT JOIN locations AS lo ON lo.id=iss.fkey_location WHERE iss.id='$id'";
+    $sql = "SELECT iss.name,iss.descripcio,iss.fkey_prioritat,iss.date_start,iss.bool_checked, "
+           ."iss.fkey_location, lo.name AS location_name "
+           ."FROM issues AS iss LEFT JOIN locations AS lo ON lo.id=iss.fkey_location "
+           ."WHERE iss.id= :id";
     //Get the Row
-    $row = $tables->getFirstRow($sql);
+    $row = $tables->getFirstRow($sql, array('id'), array($id));
     
     //Set the issue as Checked.
     if ($username=="admin")
-        if ($row['bool_checked']==0)
-            $void = $tables->executaQuery("UPDATE issues SET bool_checked=1 WHERE id='$id'");
+        if ($row['bool_checked']==0) {
+            $sql = "UPDATE issues SET bool_checked=1 WHERE id= :id";
+            $void = $tables->executaQuery($sql, array('id'), array($id));
+        }
 }
 if (!isset($row)) {
     $title       = "addissue";
@@ -50,8 +53,10 @@ if (!isset($row)) {
 $state = (isUserAdmin($rowmember['id'])) ?  2 /* usuari admin */ : 3 /* els altres */;
 
 //Donar com a llegits (bool_checked <= 1) els Comments pendents
+
 $sqlUsuari = " fkey_member". ( (isUserAdmin($rowmember['id'])) ? " <>3 " : "=3");  /** xtoni */
-$readComments = $tables->executaQuery("UPDATE comments SET bool_checked=1 WHERE fkey_issue='$id' AND $sqlUsuari");
+$sql = "UPDATE comments SET bool_checked=1 WHERE $sqlUsuari AND fkey_issue= :id";
+$readComments = $tables->executaQuery($sql, array('id'), array($id));
 
 $issue = $id;
 ?>

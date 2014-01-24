@@ -11,8 +11,9 @@ $mypassword = stripslashes($_POST['mypassword']);
 
 $cancela = false;
 
-//Get the Data from the user
-$row = $tables->getFirstRow("SELECT blocked, password FROM members WHERE username='$myusername'");
+//Get the User - using PREPARED STATEMENT!
+$sql = "SELECT blocked, password FROM members WHERE username= :username";
+$row = $tables->executaQuery( $sql, array('username'), array($username) );
 
 /** Control the number of ATTEMPTS the user has to start the session
  * http://www.dreamincode.net/forums/topic/286198-simple-login-page-with-only-3-password-attempts/ */
@@ -25,7 +26,8 @@ if ($row['blocked']==1) {
         if ($_SESSION['attempts'] == 3) 
         {
             /** BLOCK THE USER  **/
-            $res = $tables->executaQuery("UPDATE members SET blocked='1' WHERE username='$myusername'");
+            $sql = "UPDATE members SET blocked='1' WHERE username= :username";
+            $res = $tables->executaQuery( $sql, array('username'), array($username) );
             echo "THE USER HAS COMPLETED 3 ATTEMPTS AND HAS BEEN BLOCKED. CONTACT THE ADMIN.";
             $cancela = true;
         } 

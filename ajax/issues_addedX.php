@@ -39,12 +39,16 @@ switch($_GET['op']) {
                 }
             }
         }
-       $result = $tables->executaQuery($sql." WHERE id='".$_GET['id']."'");
+       $sql .= " WHERE id= :id";
+       //The Statement is prepared to avoid SQL Injection
+       $result = $tables->executaQuery($sql, array('id'), array($_GET['id']));
+//       $result = $tables->executaQuery($sql." WHERE id='".$_GET['id']."'");
        break;
    
    case "CLOSE":
        //Closes the Issue.
-       $result = $tables->executaQuery("UPDATE issues SET fkey_state='".$_GET['state']."' WHERE id='".$_GET['id']."'");
+       $sql = "UPDATE issues SET fkey_state='".$_GET['state']."' WHERE id= :id";
+       $result = $tables->executaQuery($sql, array('id'), array($_GET['id']));
        break;
 }
 ?>

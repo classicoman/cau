@@ -43,7 +43,8 @@ switch($_GET['op'])
     //Detach $cat from this $issue
     case "DEL":
         $comment = $_GET['comment'];
-    	$result = $tables->executaQuery("DELETE FROM comments WHERE id='$comment'");
+        $sql = "DELETE FROM comments WHERE id= :id";
+    	$result = $tables->executaQuery($sql, array('id'),array($comment));
         break;
 }
 ?>

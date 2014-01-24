@@ -36,8 +36,9 @@ if ($name=="")      $error = 5;
 
 if (!$error)
 {
-    // Check is the username is already in use
-    if (!dbIsQueryResultNull($tables->executaQuery("SELECT id FROM members WHERE username='$email';")))
+    // Check if the username is already in use
+    $sql = "SELECT id FROM members WHERE username= :email";
+    if ( !dbIsQueryResultNull( $tables->executaQuery($sql, array('email'), array($email)) ) )
        $error = 6;
     else {
         //Open emails file
@@ -63,7 +64,7 @@ if (!$error)
                 // Fill the email fields.
                 $direccio = "$email@escoladisseny.com";
                 $subject = "Les teves dades accés a web d'enviament d'incidències";
-            $message = "<html><body>"
+                $message = "<html><body>"
                        ."<h1>Acc&eacute;s a l'aplicaci&oacute; d'enviament d'incid&egrave;ncies <a href='http://cau.easdib.com'>http://cau.easdib.com</a></h1>"
                     ."<h2>Dades d'acc&eacute;s</h2>"   
                     ."<ul><li>Usuari: <b>".$email."</b></li><li> Contrasenya: <b>".$_POST['password']."</b></li></ul>"
